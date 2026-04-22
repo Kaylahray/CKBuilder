@@ -12,14 +12,11 @@ export function TransferCard() {
 
   const { calculateMaxAmount, executeTransfer, isCalculating, isTransferring, status } = useTransfer();
 
-  // Run amount validation
   const { isValid: isAmountValid, error: amountError } = validateCkbAmount(amount);
-  
-  // Button is disabled if: no address typed, invalid amount, or currently processing
+
   const isButtonDisabled = !transferTo || !isAmountValid || isTransferring || isCalculating;
 
   const handleMaxAmount = async () => {
-    // Basic check to ensure they typed an address before calculating
     if (!transferTo) return; 
     const max = await calculateMaxAmount(transferTo, data);
     if (max) setAmount(max);
@@ -37,8 +34,6 @@ export function TransferCard() {
       <h2 className="text-2xl font-bold mb-8">Send CKB</h2>
 
       <div className="space-y-6">
-        
-        {/* Address Input (No validation styling) */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-400">Recipient Address</label>
           <textarea
@@ -49,7 +44,6 @@ export function TransferCard() {
           />
         </div>
 
-        {/* Amount Input (With validation) */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-400 flex justify-between">
             Amount (CKB)
@@ -80,7 +74,6 @@ export function TransferCard() {
           )}
         </div>
 
-        {/* Status Messages */}
         {status.message && (
           <div className={`p-4 rounded-xl flex items-start gap-3 text-sm ${
             status.type === 'error' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 
@@ -94,7 +87,6 @@ export function TransferCard() {
           </div>
         )}
 
-        {/* Action Button */}
         <button
           onClick={handleTransfer}
           disabled={isButtonDisabled}

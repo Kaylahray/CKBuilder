@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import { Providers } from "../context/provider"; // Adjust path if using src/
+import { Providers } from "../context/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +29,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-[#141414] text-white min-h-screen font-sans antialiased selection:bg-[#EEFF54] selection:text-black`}
       >
-        {/* Wrap children with the new Providers component */}
         <Providers>
           {children}
         </Providers>

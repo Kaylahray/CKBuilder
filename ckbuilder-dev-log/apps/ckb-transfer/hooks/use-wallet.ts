@@ -9,14 +9,12 @@ export function useWallet() {
   const [balance, setBalance] = useState<string>("");
 
   useEffect(() => {
-    // If there is no signer (wallet disconnected), clear the state
     if (!signer) {
       setAddress("");
       setBalance("");
       return;
     }
 
-    // Fetch the user's address and CKB balance
     const fetchWalletData = async () => {
       try {
         const addr = await signer.getRecommendedAddress();
@@ -32,7 +30,6 @@ export function useWallet() {
     fetchWalletData();
   }, [signer]);
 
-  // Helper to format the address cleanly for the UI
   const formattedAddress = address
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
     : "";
