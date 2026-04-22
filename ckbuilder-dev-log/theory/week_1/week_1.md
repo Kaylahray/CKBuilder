@@ -358,6 +358,8 @@ I created another wallet to send tokens to 👇
 
 ![four](images/image-4.png)
 
+![screen](images/screen.png)
+
 👇 Now I want to view my transaction specifically because I want to see the lock script and see the raw transaction structure so i can compare it to the " FILL IN THE BLANKS" in CKB Academy Lesson 2👇
 
 ![six](images/image-six.png)

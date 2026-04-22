@@ -1,8 +1,7 @@
 import { ccc } from "@ckb-ccc/connector-react";
 
 export default function ConnectWallet() {
-  const { open, disconnect, setClient } = ccc.useCcc(); 
-  const { wallet } = ccc.useCcc(); 
+  const { open, disconnect, wallet } = ccc.useCcc();
 
   return (
     <div>

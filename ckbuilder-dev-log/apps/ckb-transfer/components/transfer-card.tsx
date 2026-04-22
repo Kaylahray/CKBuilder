@@ -13,6 +13,7 @@ export function TransferCard() {
   const { calculateMaxAmount, executeTransfer, isCalculating, isTransferring, status } = useTransfer();
 
   const { isValid: isAmountValid, error: amountError } = validateCkbAmount(amount);
+  const hasStatusMessage = Boolean(status.message);
 
   const isButtonDisabled = !transferTo || !isAmountValid || isTransferring || isCalculating;
 
@@ -74,26 +75,34 @@ export function TransferCard() {
           )}
         </div>
 
-        {status.message && (
-          <div className={`p-4 rounded-xl flex items-start gap-3 text-sm ${
-            status.type === 'error' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 
-            status.type === 'success' ? 'bg-[#EEFF54]/10 text-[#EEFF54] border border-[#EEFF54]/20' : 
-            'bg-white/5 text-gray-300 border border-white/10'
-          }`}>
-            {status.type === 'error' && <AlertCircle className="w-5 h-5 shrink-0" />}
-            {status.type === 'success' && <CheckCircle2 className="w-5 h-5 shrink-0" />}
-            {status.type === 'idle' && <Info className="w-5 h-5 shrink-0" />}
-            <p className="break-all mt-0.5">{status.message}</p>
-          </div>
-        )}
+        <div className="min-h-24">
+          {hasStatusMessage && (
+            <div className={`p-4 rounded-xl flex items-start gap-3 text-sm ${
+              status.type === 'error' ? 'bg-red-500/10 text-red-400 border border-red-500/20' : 
+              status.type === 'success' ? 'bg-[#EEFF54]/10 text-[#EEFF54] border border-[#EEFF54]/20' : 
+              'bg-white/5 text-gray-300 border border-white/10'
+            }`}>
+              {status.type === 'error' && <AlertCircle className="w-5 h-5 shrink-0" />}
+              {status.type === 'success' && <CheckCircle2 className="w-5 h-5 shrink-0" />}
+              {status.type === 'idle' && <Info className="w-5 h-5 shrink-0" />}
+              <p className="break-all mt-0.5">{status.message}</p>
+            </div>
+          )}
+        </div>
 
         <button
           onClick={handleTransfer}
           disabled={isButtonDisabled}
           className="w-full bg-[#EEFF54] hover:bg-[#d4e64b] disabled:bg-white/10 disabled:text-gray-500 text-[#141414] font-bold text-lg py-4 rounded-xl transition-all flex items-center justify-center gap-2 group mt-4"
         >
-          {isTransferring ? "Processing..." : "Confirm Transfer"}
-          {!isTransferring && <ArrowRight className={`w-5 h-5 transition-transform ${!isButtonDisabled ? "group-hover:translate-x-1" : ""}`} />}
+          <span className="inline-flex min-w-[10rem] items-center justify-center gap-2">
+            <span>{isTransferring ? "Processing..." : "Confirm Transfer"}</span>
+            <ArrowRight
+              className={`w-5 h-5 transition-all ${
+                isTransferring ? "opacity-0" : `opacity-100 ${!isButtonDisabled ? "group-hover:translate-x-1" : ""}`
+              }`}
+            />
+          </span>
         </button>
       </div>
     </div>
