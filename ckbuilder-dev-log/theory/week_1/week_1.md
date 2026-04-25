@@ -1,12 +1,82 @@
 ## CKB Builder Track Dev Log (Week 1)
 
+- Name: Chioma Christopher
+- Week Ending: 26-04-2026
+
+#### Courses Completed
+
+- Introduction to Nervos CKB, The entire section of the CKB fundamental in documentation - transactions, consensus, execution, addreses, hashing, CKB-VM, CKB Vs BTC , Cell model.
+- Completed the first three Lessons of the CKB Academy but I haven't finished exploring DOB (Digital objects).
+- I also quickly Learnt about, wallet because I wanted to see a different appraoch to the task Neon gave to me earlier, which was to use the boilerplate and scaffold the transfer CKB, and I had to put my Private Key in the UI.
+
+- completed two basic practice apps using CCC Connector for React
+  - My First app is a basic transfer app and has a page where you can mint spores. For this particular application, the minted DOB shows in your wallet too.
+
+  Here's the link
+
+  https://ckb-transfer.vercel.app/
+
+  For this I used my ID card that I created from project 2👇
+
+  ![transfe](images/image-32.png)
+
+  ![rr](images/image-33.png)
+
+  ![check](images/image-34.png)
+
+  This it how it looks in my wallet 👇
+
+  ![okayy](images/image-35.png)
+  - The second App I built is a SporeID app. A Basic Spore NFT minter that creates an "ID Card" Spore containing basic metadata (like Name and a short Bio).
+    Its basically a way for to mint an onchain Identity card. Here, it shows perfectly in the UI but not wallet.
+
+  Here's the link
+
+  https://spore-id.vercel.app/
+
+No wallet connected 👇
+
+![empty](images/image-10.png)
+
+I connected my wallet but I already had a Spore I created earlier 👇
+
+![connect](images/image-18.png)
+
+Minting new spore 👇
+
+![choose](images/image-28.png)
+
+demo
+
+<video controls src="spore.mp4" title="Title"></video>
+
+It is recommended to compress files 😁
+
+![compress](images/image-29.png)
+
+![mint](images/image-30.png)
+
+you can download the ID as pdf or png 👇
+
+![download](images/image-31.png)
+
+My ID 😁👀.
+
+![myID](images/id.png)
+
+- I'm still trying to understand this 👇 and might try exploring how to use spore sdk or any potential fix for the not supported. I didn't want to create two different cells(one for image and metadata), so i did it in One. I did try to use the spore sdk but I got several errors since it was initially built for nodejs runtime and I didn't want to do the Node-polyfills stuff yet.
+
+  ![hmmm](images/image-36.png)
+
+### My Notes 👇
+
 Introduction to Nervos CKB
 
- I'll be starting with CKB fundamentals section of documentation.
+I'll be starting with CKB fundamentals section of documentation.
 
- ![nervos](images/image-one.png)
+![nervos](images/image-one.png)
 
- a secure foundation that everything else builds on
+a secure foundation that everything else builds on
 
 Nervos solves the blockchain trilemma problem by splitting responsibilities into layers
 
@@ -24,7 +94,7 @@ So instead of just being “money,” CKB represents **space on the blockchain**
 
 ![ckbyte](images/image-four.png)
 
-In conclusion of this setion , in CKB we can use multiple programming languages  and everything runs inside something called **CKB-VM**, which is based on RISC-V.
+In conclusion of this setion , in CKB we can use multiple programming languages and everything runs inside something called **CKB-VM**, which is based on RISC-V.
 
 ![ckbvm](images/image-ckbvm.png)
 
@@ -46,7 +116,7 @@ I'm moving on to the CELL MODEL section, I'll be adding images when going throug
   - Consume old cell
   - Modify data
   - Create new cell
-- Model: destroy -  recreate
+- Model: destroy - recreate
 
 ### Cell States
 
@@ -146,7 +216,7 @@ I'm moving on to CKB vs Bitcoin (UTXO vs Cell Model)
   - Code-based validation (program logic)
 - More expressive and flexible validation model
 
-So,  CKB is more like Bitcoin model + programmability. So CKB basically extends bitcoin design and maintains security while enabling complex applications
+So, CKB is more like Bitcoin model + programmability. So CKB basically extends bitcoin design and maintains security while enabling complex applications
 
 I'm moving to CKBVM
 
@@ -254,7 +324,7 @@ I'm going to look into scripts now briefly
 
 - Passed into scripts as input parameters
 - Common pattern:
-  - args -  public key or identifier
+  - args - public key or identifier
   - witness - signature
 
 ### Execution Model-2
@@ -275,11 +345,11 @@ I made more notes by concluding CKB Academy Lesson 1 and 2. 👇
 
 ![one](images/image-5.png)
 
- reminder to myself: ckb is more like storage ownership than normal account balance.
+reminder to myself: ckb is more like storage ownership than normal account balance.
 
 ![try](images/image-16.png)
 
- you can't exceed capacity.👆
+you can't exceed capacity.👆
 
 ![ownership](images/image-6.png)
 
@@ -366,5 +436,4 @@ I created another wallet to send tokens to 👇
 
 ![seven](images/image-se.png)
 
-Try it 
-https://ckb-transfer.vercel.app/
+- Moving on I'll try to solidify my knowledge and might dive into scripts.

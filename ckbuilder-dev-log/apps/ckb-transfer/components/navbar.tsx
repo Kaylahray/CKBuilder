@@ -1,5 +1,7 @@
 "use client";
 
+
+import Link from "next/link"
 import { Wallet, LogOut } from "lucide-react";
 import { useWallet } from "../hooks/use-wallet";
 
@@ -17,7 +19,12 @@ export function Navbar() {
             CKB <span className="text-[#EEFF54]">Transfer</span>
           </span>
         </div>
-
+  
+           <div className="hidden md:flex items-center gap-6 ml-8 text-sm font-medium text-gray-400">
+         <Link href="/" className="hover:text-[#EEFF54] transition-colors">Transfer CKB</Link>
+          <Link href="/xudt" className="hover:text-[#EEFF54] transition-colors">Mint Token</Link>
+         <Link href="/spore" className="hover:text-[#EEFF54] transition-colors">Create DOB</Link>
+         </div>
         <div>
           {isConnected ? (
             <div className="flex items-center gap-4 bg-white/5 border border-white/10 p-1.5 pl-4 rounded-full">
