@@ -68,6 +68,10 @@ My ID 😁👀.
 
   ![hmmm](images/image-36.png)
 
+Now I'm hoping my second app displays everything, since I'm using one wallet and it did.
+
+- <video controls src="confirm.mp4" title="Title"></video>
+
 ### My Notes 👇
 
 Introduction to Nervos CKB
