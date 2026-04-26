@@ -48,7 +48,7 @@ Minting new spore 👇
 
 demo
 
-<video controls src="spore.mp4" title="Title"></video>
+https://youtu.be/V_6gQnvJJ6o
 
 It is recommended to compress files 😁
 
@@ -70,7 +70,7 @@ My ID 😁👀.
 
 Now I'm hoping my second app displays everything, since I'm using one wallet and it did.
 
-- <video controls src="confirm.mp4" title="Title"></video>
+https://youtu.be/VelHjYNAkJY
 
 ### My Notes 👇
 
