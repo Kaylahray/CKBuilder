@@ -101,6 +101,8 @@ _Decoded hex = "kaylah" - that's my username. And because burning destroys the c
 
 ![final testing session state](images/image-22.png)
 
+I have so many ENV variables powering the frontend 😁🫡
+
 ## THEORY
 
 ### 1. Intro to Script
