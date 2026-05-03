@@ -33,7 +33,7 @@ After claiming the name, it takes me to the next page where I set my profile inf
 ![three](images/image-2.png)
 *This is the profile setup page. After a username cell is successfully created on-chain, the app routes me here to fill in my profile details before creating a profile cell.*
 
-![alt text](images/image-11.png)
+![profile info form](images/image-11.png)
 *Filling in my profile info — this data will be stored in the `data` field of the profile cell on-chain.*
 
 Then I click "Create Profile."
@@ -42,84 +42,84 @@ Then I click "Create Profile."
 
 This is what it shows when you burn your username cell but not the profile cell.
 
-![alt text](images/image-3.png)
+![burned username broken state](images/image-3.png)
 *Interesting edge case — when I burn only the username cell, the profile cell still exists on-chain, but the app can't resolve who the username belongs to anymore. The UI reflects this broken state.*
 
 ---
 
 I'm claiming it back.
 
-![alt text](images/image-4.png)
+![reclaiming username](images/image-4.png)
 *Reclaiming my username by submitting a new transaction that creates a fresh username cell with the same name. The blockchain doesn't block this since the old cell was already consumed (burned).*
 
-![alt text](images/image-5.png)
+![username claim transaction submitted](images/image-5.png)
 *The transaction is being built and submitted. Under the hood, this creates a new cell with my username stored as hex-encoded bytes in the `data` field.*
 
 ---
 
 After claiming my name back, I can see it alongside my profile cell. Now I can access my profile page.
 
-![alt text](images/image-6.png)
+![username and profile cells live](images/image-6.png)
 *Both cells are now live — the username cell and the profile cell. The app resolves them together to display my full profile.*
 
-![alt text](images/image-7.png)
+![profile page accessible](images/image-7.png)
 *My profile page is accessible again. This works because the app queries my username cell, finds the matching profile cell, and renders the data stored in both.*
 
 ---
 
 What if I want to burn my profile cell?
 
-![alt text](images/image-8.png)
+![initiating profile cell burn](images/image-8.png)
 *I'm initiating a burn on the profile cell specifically. Burning a cell means using it as an input in a transaction without a corresponding output — it gets consumed and the locked CKB is released back to me.*
 
-![alt text](images/image-9.png)
+![confirming profile burn transaction](images/image-9.png)
 *Confirming the burn transaction. At this point, the profile cell will be permanently destroyed once the transaction is committed.*
 
 After the burn:
 
-![alt text](images/image-10.png)
+![after profile burn username only](images/image-10.png)
 *The profile cell is gone, but my username cell is still live. The app shows a state where I have a username but no profile — similar to the earlier broken state, but in reverse.*
 
 ---
 
 Creating a new profile cell.
 
-![alt text](images/image-12.png)
+![creating new profile cell](images/image-12.png)
 *I'm going through the profile creation flow again. Since cells are immutable, "updating" a profile actually means burning the old one and creating a new one — but here I'm just creating fresh since I already burned it.*
 
-![alt text](images/image-13.png)
+![new profile transaction submitted](images/image-13.png)
 *The transaction is being submitted to create the new profile cell on-chain.*
 
-![alt text](images/image-14.png)
+![new profile transaction confirmed](images/image-14.png)
 *Transaction confirmed. A new profile cell now exists on-chain with my updated data.*
 
-![alt text](images/image-15.png)
+![both cells live again](images/image-15.png)
 *Back to the normal state — username and profile cells are both live, and my profile page is accessible again.*
 
 ---
 
 This is a burn transaction. When I checked the "Data" tab after clicking "Cell Info," it shows what I burned — which is my username stored in hex.
 
-![alt text](images/image-16.png)
+![cell data tab hex encoded username](images/image-16.png)
 *The raw cell data shown in hex. Every username is stored as bytes in the `data` field of the username cell. You can decode it to get the original string.*
 
 This decodes to "kaylah." Also notice that when I burn cells, I get my CKB back.
 
-![alt text](images/image-17.png)
+![decoded hex kaylah ckb returned](images/image-17.png)
 *Decoded hex = "kaylah" — that's my username. And because burning destroys the cell, the CKB that was locked in it (to cover cell capacity) gets returned to my wallet. This is a key mechanic in CKB — you pay to store data, and you get paid back when you delete it.*
 
 ---
 
-![alt text](images/image-18.png)
+![exploring app flow states](images/image-18.png)
 *Continuing to explore the app flow — testing various states to understand how the username and profile cells interact.*
 
-![alt text](images/image-19.png)
+![on-chain transaction per action](images/image-19.png)
 *Each action here corresponds to an on-chain transaction. Even small UI interactions like "claim" or "burn" are real blockchain operations.*
 
-![alt text](images/image-20.png)
+![app reflects on-chain state](images/image-20.png)
 *The app correctly reflects the on-chain state in real time, querying the CKB node to check which cells are live.*
 
-![alt text](images/image-22.png)
+![final testing session state](images/image-22.png)
 *Final state of my testing session. Everything behaves as expected — claim, set profile, burn, reclaim, repeat. The cell model makes all of this composable and reversible.*
 
 THEORY 
