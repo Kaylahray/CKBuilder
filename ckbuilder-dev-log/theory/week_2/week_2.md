@@ -25,6 +25,33 @@ Next week I'll be looking into Rust since it's faster and uses less cycles and s
 
 https://spore-id.vercel.app/
 
+Things you can do
+
+- Connect a CKB wallet and see live balance.
+- Claim a unique username (`@handle`) on `/onboard`.
+- Create or update on-chain profile (`name`, `headline`, `bio`, `links`).
+- Mint a profile picture on `/mint` (with auto image compression).
+- View all minted profile pictures in gallery.
+- Delete old profile pictures (except the currently selected avatar).
+- Set a minted picture as avatar from `/me`, then save profile.
+- Open and share public page at `/u/<username>`.
+- Switch avatar anytime by selecting another minted picture and saving.
+- Release username (profile data stays with wallet, page hides until reclaim).
+- Reclaim username and relink profile.
+- Burn profile cell and recreate profile later.
+
+### Nice Demo Flow (for testers)
+
+1. Connect wallet.
+2. Claim username.
+3. Create profile.
+4. Mint image on `/mint`.
+5. Go to `/me` -> Edit profile -> select avatar -> Save.
+6. Open `/u/<username>` in incognito.
+7. Mint second image, switch avatar, save again.
+8. Delete old non-selected image.
+
+
 ![one](images/image.png)
 _This is the dashboard showing my previously claimed username. The username cell exists on-chain, meaning it's stored as a live cell with my lock script as the owner._
 
