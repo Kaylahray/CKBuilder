@@ -103,6 +103,10 @@ _Decoded hex = "kaylah" - that's my username. And because burning destroys the c
 
 I have so many ENV variables from the deployed scripts powering the frontend 😁🫡
 
+This is the frontend repo
+
+https://github.com/Kaylahray/spore-id
+
 ## THEORY
 
 ### 1. Intro to Script
