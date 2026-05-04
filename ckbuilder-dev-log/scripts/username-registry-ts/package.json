@@ -1,5 +1,5 @@
 {
-  "name": "username-registry-real",
+  "name": "username-registry-ts",
   "version": "0.1.0",
   "private": true,
   "description": "CKB username name-cell registry script (v2)",
