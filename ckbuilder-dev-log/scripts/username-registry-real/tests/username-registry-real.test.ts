@@ -74,8 +74,8 @@ function createOwnerLock(
   );
 }
 
-describe("username registry type script", () => {
-  test("mint succeeds with valid username", async () => {
+describe("username registry real (name-cell v2)", () => {
+  test("mint succeeds with valid lowercase username", async () => {
     const resource = Resource.default();
     const tx = Transaction.default();
 
@@ -89,7 +89,7 @@ describe("username registry type script", () => {
     await verifier.verifySuccess();
   });
 
-  test("mint fails with invalid username", async () => {
+  test("mint fails with uppercase username", async () => {
     const resource = Resource.default();
     const tx = Transaction.default();
 
@@ -97,7 +97,7 @@ describe("username registry type script", () => {
     const ownerA = createOwnerLock(resource, tx, "0x01");
 
     tx.outputs.push(Resource.createCellOutput(ownerA, usernameType));
-    tx.outputsData.push(asciiToHex("a!"));
+    tx.outputsData.push(asciiToHex("Alice"));
 
     const verifier = Verifier.from(resource, tx);
     await verifier.verifyFailure(EXIT_INVALID_USERNAME);

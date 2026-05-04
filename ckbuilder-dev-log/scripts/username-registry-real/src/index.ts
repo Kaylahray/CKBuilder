@@ -1,21 +1,11 @@
 import * as bindings from "@ckb-js-std/bindings";
 import { HighLevel } from "@ckb-js-std/core";
 
-// ──────────────────────────────────────────────
-// Username Registry – Type Script for CKB
-//
-// Think of this as the "LinkedIn @handle" guard.
-// A user claims a username by minting a username cell.
-// The username is stored as raw UTF-8 bytes in cell data.
-// Once set, the username is immutable and non-transferable.
-//
-// Cell data format: raw UTF-8 string, e.g. "alice_dev"
-//   Rules:
-//     - 3–32 characters
-//     - Only a-z, A-Z, 0-9, underscore (_)
-//     - Cannot be changed after mint (immutable handle)
-// ──────────────────────────────────────────────
-
+// Name-cell v2 contract:
+// - one username cell per type-script group in tx
+// - mint: output-only, valid canonical username required
+// - burn: input-only, allowed
+// - update: lock hash and username bytes must remain unchanged
 enum ExitCode {
   Success = 0,
   EmptyGroup = 40,
@@ -27,10 +17,7 @@ enum ExitCode {
 }
 
 function isIndexOutOfBound(err: any): boolean {
-  return (
-    err?.errorCode === bindings.INDEX_OUT_OF_BOUND ||
-    err?.errorCode === 1
-  );
+  return err?.errorCode === bindings.INDEX_OUT_OF_BOUND || err?.errorCode === 1;
 }
 
 function hasGroupCell(index: number, source: bindings.SourceType): boolean {
@@ -57,19 +44,16 @@ function decodeAscii(buf: ArrayBuffer): string | null {
   const bytes = new Uint8Array(buf);
   let str = "";
   for (let i = 0; i < bytes.length; i++) {
-    if (bytes[i] > 0x7f) {
-      return null;
-    }
+    if (bytes[i] > 0x7f) return null;
     str += String.fromCharCode(bytes[i]);
   }
   return str;
 }
 
-// Validate the username string stored in cell data.
+// Canonical rule in v2: lowercase letters, digits, underscore only.
 function isValidUsername(username: string): boolean {
   if (username.length < 3 || username.length > 32) return false;
-  // Only alphanumeric and underscore.
-  return /^[a-zA-Z0-9_]+$/.test(username);
+  return /^[a-z0-9_]+$/.test(username);
 }
 
 function readUsername(index: number, source: bindings.SourceType): string | null {
@@ -82,24 +66,17 @@ function readUsername(index: number, source: bindings.SourceType): string | null
   }
 }
 
-function validateUsernameRegistry(): number {
+function validateNameCell(): number {
   try {
     const hasIn0 = hasGroupCell(0, bindings.SOURCE_GROUP_INPUT);
     const hasOut0 = hasGroupCell(0, bindings.SOURCE_GROUP_OUTPUT);
     const hasIn1 = hasGroupCell(1, bindings.SOURCE_GROUP_INPUT);
     const hasOut1 = hasGroupCell(1, bindings.SOURCE_GROUP_OUTPUT);
 
-    // Only one cell per group is allowed.
-    if (hasIn1 || hasOut1) {
-      return ExitCode.InvalidCardinality;
-    }
+    if (hasIn1 || hasOut1) return ExitCode.InvalidCardinality;
+    if (!hasIn0 && !hasOut0) return ExitCode.EmptyGroup;
 
-    // There must be at least one side.
-    if (!hasIn0 && !hasOut0) {
-      return ExitCode.EmptyGroup;
-    }
-
-    // Mint path: claiming a new username.
+    // Mint
     if (!hasIn0 && hasOut0) {
       const username = readUsername(0, bindings.SOURCE_GROUP_OUTPUT);
       if (username === null || !isValidUsername(username)) {
@@ -108,26 +85,17 @@ function validateUsernameRegistry(): number {
       return ExitCode.Success;
     }
 
-    // Burn path: releasing the username cell.
-    if (hasIn0 && !hasOut0) {
-      return ExitCode.Success;
-    }
+    // Burn
+    if (hasIn0 && !hasOut0) return ExitCode.Success;
 
-    // Update path: check ownership and that username has NOT changed.
+    // Update path is deliberately immutable/non-transferable.
     const inLockHash = HighLevel.loadCellLockHash(0, bindings.SOURCE_GROUP_INPUT);
     const outLockHash = HighLevel.loadCellLockHash(0, bindings.SOURCE_GROUP_OUTPUT);
+    if (!equalBytes(inLockHash, outLockHash)) return ExitCode.OwnershipChanged;
 
-    if (!equalBytes(inLockHash, outLockHash)) {
-      return ExitCode.OwnershipChanged;
-    }
-
-    // Username is immutable: input data must equal output data.
     const inData = bindings.loadCellData(0, bindings.SOURCE_GROUP_INPUT);
     const outData = bindings.loadCellData(0, bindings.SOURCE_GROUP_OUTPUT);
-
-    if (!equalBytes(inData, outData)) {
-      return ExitCode.UsernameChanged;
-    }
+    if (!equalBytes(inData, outData)) return ExitCode.UsernameChanged;
 
     return ExitCode.Success;
   } catch (_) {
@@ -135,4 +103,4 @@ function validateUsernameRegistry(): number {
   }
 }
 
-bindings.exit(validateUsernameRegistry());
+bindings.exit(validateNameCell());

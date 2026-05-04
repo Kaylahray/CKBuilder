@@ -1,8 +1,8 @@
 {
-  "name": "username-registry-ts",
+  "name": "username-registry-real",
   "version": "0.1.0",
   "private": true,
-  "description": "CKB username registry script in TypeScript",
+  "description": "CKB username name-cell registry script (v2)",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "bundle": "esbuild --platform=neutral --minify --bundle --external:@ckb-js-std/bindings --target=es2022 src/index.ts --outfile=dist/index.js",

@@ -13,7 +13,7 @@
 
 #### Scripts I Built
 
-- `username-registry-ts`: a Type Script that controls a username cell. It allows minting a username, burning it, and carrying it forward only if the owner stays the same and the username value does not change. So the username is non-transferable and immutable after creation. The script validates format rules on-chain - length must be 3–32 characters and only letters, numbers, and underscores are allowed. Uniqueness - making sure no one else already holds that name - is not enforced by the contract. That check happens off-chain through the app and indexer.
+- `username-registry-ts`: a Type Script that controls a username cell. You can mint a username, burn it, or keep it in a follow-up transaction only if the owner lock stays the same and the username bytes in the cell never change—so the handle is non-transferable and immutable after creation. On-chain it enforces format: length 3–32 and only lowercase letters a–z, digits 0–9, and underscores \_. It also enforces name-cell–style rules inside the transaction (for example, how many cells of this script appear in the relevant script group). Making sure no one else has already taken that name across the whole network is not something this script resolves by itself; the app (and any services you use to discover existing cells) still has to coordinate who gets which name in practice.
 
 - `profile-registry-ts`: a Type Script that controls a profile cell. It allows minting a profile, burning it, and updating the profile data as long as ownership stays the same. So the profile is non-transferable, but its content can be updated. The script also validates profile data on-chain - it requires a `name` field that is non-empty and at most 64 characters. Updating to invalid profile data is rejected by the contract.
 
@@ -40,6 +40,10 @@ Things you can do
 - Reclaim username and relink profile.
 - Burn profile cell and recreate profile later.
 
+I wanted to be sure my script for username works so i tried breaking a rule
+
+![trial](images/ok.png)
+
 ### Nice Demo Flow (for testers)
 
 1. Connect wallet.
@@ -50,7 +54,6 @@ Things you can do
 6. Open `/u/<username>` in incognito.
 7. Mint second image, switch avatar, save again.
 8. Delete old non-selected image.
-
 
 ![one](images/image.png)
 _This is the dashboard showing my previously claimed username. The username cell exists on-chain, meaning it's stored as a live cell with my lock script as the owner._
@@ -113,7 +116,7 @@ _Back to the normal state - username and profile cells are both live, and my pro
 ![cell data tab hex encoded username](images/image-16.png)
 _The raw cell data shown in hex. Every username is stored as bytes in the `data` field of the username cell. You can decode it to get the original string._
 
-This decodes to "kaylah." Also I notice that when I burn cells, I get my CKB back. I'm going to find a way to make the balance update because i noticed i have to refresh first.
+This decodes to "kaylah." Also I notice that when I burn cells, I get my CKB back.
 
 ![decoded hex kaylah ckb returned](images/image-17.png)
 _Decoded hex = "kaylah" - that's my username. And because burning destroys the cell, the CKB that was locked in it (to cover cell capacity) gets returned to my wallet. This is a key mechanic in CKB - you pay to store data, and you get paid back when you delete it._
