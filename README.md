@@ -7,3 +7,7 @@ I will also use this space to document the things I build as I keep exploring th
 apps - https://ckb-transfer.vercel.app/
 
 https://spore-id.vercel.app/
+
+This is the repository for week4 scripts while teh others are in scripts folder
+
+https://github.com/Kaylahray/ckb-claim-treasury-protocol
