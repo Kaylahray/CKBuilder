@@ -6,6 +6,9 @@
 - Focus: **Wallet-connected identity and real on-chain profile surfaces**
 - Status: **Multi-page product with wallet identity, on-chain username/profile/endorsements; Chain Cell handoff still mocked**
 
+> **Side note:** Week 15 updates will follow in the next few days. I'll add
+> the deployed Vercel link here once it's live.
+
 ---
 
 ## TL;DR
