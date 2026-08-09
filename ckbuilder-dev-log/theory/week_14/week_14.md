@@ -9,15 +9,7 @@
 > **Side note:** Week 15 updates will follow in the next few days. I'll add
 > the deployed Vercel link here once it's live.
 
-![one](images/image.png)
-
-![two](images/image-1.png)
-
-![three](images/image-2.png)
-
-![four](images/image-3.png)
-
-![five](images/image-4.png)
+onetwothreefourfive
 
 ---
 
@@ -65,16 +57,6 @@ multi-page app with wallet-connected identity and on-chain profile surfaces.
 - Reward treasury / sUDT claim flow (PROOF is still a soft, off-chain
   counter).
 - Notification + moderation + abuse prevention pipeline.
-
-## Deployment Checklist (Vercel)
-
-- [ ] Confirm branch is up to date and build passes locally.
-- [ ] Commit Week 14 checkpoint.
-- [ ] Push to remote branch.
-- [ ] Create/import Vercel project for `keepers_relay/keepers_relay`.
-- [ ] Set required `NEXT_PUBLIC_*` env vars in Vercel.
-- [ ] Trigger deploy and verify routes.
-- [ ] Smoke test wallet, profile, relay, and `/u` pages.
 
 ## Notes for Next Week
 
