@@ -755,3 +755,12 @@ The direction going forward is:
 > Build the product users can understand and return to, then extract the CKB primitives that prove themselves useful through the product.
 
 **Live app:** [https://keepers-relay.vercel.app](https://keepers-relay.vercel.app)
+
+---
+
+## Continue → Part 2
+
+Week 17 continued with Event Engine transaction tests (**19 passed**), treasury and settle bugfixes, and a Pudge redeploy of `event-type` and `event-treasury-lock` on 2026-09-10.
+
+→ **[Week 17 — Part 2](./week_17_part2.md)**
+
