@@ -16,7 +16,7 @@ Part 2 focused on implementation and verification.
 
 This week I expanded the Event Engine test suite, fixed bugs the tests exposed, redeployed the corrected scripts on Pudge, updated the application environment to match those deployments, and improved the Connect authentication flow in the app.
 
-Week 18 will focus on the SPARK grant proposal. This report covers the technical work completed in this second half of Week 17.
+This report covers the technical work completed in this second half of Week 17 and establishes the next implementation stage.
 
 ---
 
@@ -179,13 +179,13 @@ Reward claim
 3. Relayer service for timeout and turn advancement
 4. Stronger API verification of on-chain seats
 5. Broader coverage from `TRANSACTION_CASES.md`
-6. Week 18: SPARK grant proposal write-up
+6. Continue documenting and completing the full event lifecycle
 
 ---
 
-## 7. Architecture note for the grant work
+## 7. Architecture note for the next implementation stage
 
-The layering that will guide the grant proposal is:
+The layering that will guide the next implementation stage is:
 
 | Layer | Responsibility |
 |-------|----------------|
@@ -209,6 +209,6 @@ Week 17 Part 1 defined the product and protocol direction.
 
 Week 17 Part 2 verified the Event Engine with transaction tests, fixed the failures those tests found, redeployed the corrected scripts on Pudge, and aligned the application with the new deployments.
 
-The next phase is completing the full event lifecycle in the live app on testnet, then packaging that progress into the SPARK grant proposal in Week 18.
+The next phase is completing the full event lifecycle in the live app on testnet and closing the gap between application gameplay and verified challenge results.
 
 **Live app:** [https://keepers-relay.vercel.app](https://keepers-relay.vercel.app)
