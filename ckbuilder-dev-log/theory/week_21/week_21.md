@@ -1,7 +1,7 @@
 # Week 21
 
 - Name: Chioma Christopher
-- Week ending: 10-08-2026
+- Week ending: 08-Oct-2026
 - Project: Keepers Relay
 
 ---
