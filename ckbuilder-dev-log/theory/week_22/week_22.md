@@ -147,6 +147,8 @@ Friends can share one lobby, lock once, and race one shrinking clock. The pot is
 
 The homepage now says that out loud. Enter takes you to the crowns. Challenge a friend takes you to the players. Host one yourself is the other door. Each one opens a different page.
 
+The watch screen is what stays up in the room. A phone scans the code there, or the same code on the host desk, and opens the play page. The lobby shows who is in. Connect once, claim a username, then host or take a seat. A profile picture is a Spore: mint it, then set it.
+
 ## What is next
 
 The game is already the thing I would show someone. One cell, one clock, one pot, and a proof the script checks. Friends sit in the lobby and stake their own entry. When a room is quiet, a public floor crown stays open so the next person can still lock in.
